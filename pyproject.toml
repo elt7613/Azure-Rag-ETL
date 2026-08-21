@@ -1,0 +1,48 @@
+[project]
+name = "azure-rag-etl"
+version = "0.1.0"
+description = "An ETL + RAG system on Azure AI Services: ingest any document format, keep a vector index and knowledge graph in sync, answer questions with citations."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.11"
+dependencies = [
+    "cocoindex>=1.0.20",
+    "pydantic>=2.9",
+    "pydantic-settings>=2.6",
+    "azure-search-documents>=11.5.0",
+    "azure-ai-documentintelligence>=1.0.0",
+    "azure-storage-blob>=12.23.0",
+    "azure-identity>=1.19.0",
+    "openai>=1.55.0",
+    "neo4j>=5.26.0",
+    "pdfplumber>=0.11.4",
+    "python-docx>=1.1.2",
+    "openpyxl>=3.1.5",
+    "python-pptx>=1.0.2",
+    "rapidfuzz>=3.10",
+    "tiktoken>=0.8.0",
+    "watchdog>=6.0.0",
+    "python-dotenv>=1.0.1",
+    "aiohttp>=3.10",
+    # ---- retrieval service ----
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
+    "sse-starlette>=2.1",
+    "langgraph>=1.0",
+    "pydantic-ai>=2.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.3", "pytest-asyncio>=0.24", "httpx>=0.27", "pillow>=10.0", "reportlab>=4.0"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

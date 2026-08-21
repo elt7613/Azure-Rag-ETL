@@ -1,0 +1,40 @@
+# Two long-running processes, one image.
+#
+# They are separate services rather than a supervisor inside one container
+# because they fail differently and should be restarted differently: the API
+# is stateless and can be killed at will, while the ETL watcher holds the
+# incremental ledger and a mid-flight ingest. Collapsing them would also tie
+# the chat API's availability to a re-ingest.
+
+services:
+  api:
+    build: .
+    image: azure-rag-etl:latest
+    restart: unless-stopped
+    env_file:
+      - .env          # On Dokploy, delete this and use the environment panel.
+    ports:
+      - "8000:8000"
+    volumes:
+      - rag-data:/app/data
+
+  etl:
+    build: .
+    image: azure-rag-etl:latest
+    restart: unless-stopped
+    env_file:
+      - .env
+    # Catch up on anything missed while down, then watch. With DOC_SOURCE=blob
+    # the watcher polls ETags, so an unchanged corpus costs one cheap list call
+    # per interval and nothing else.
+    command: ["cocoindex", "--app-dir", ".", "update", "rag.etl.app", "--live"]
+    volumes:
+      - rag-data:/app/data
+    # Only this service writes data/. The API shares the volume read-mostly, so
+    # the two must stay on one host -- SQLite and LMDB over a network filesystem
+    # is a corruption bug waiting for a busy day.
+    depends_on:
+      - api
+
+volumes:
+  rag-data:

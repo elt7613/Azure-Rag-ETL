@@ -1,0 +1,30 @@
+.git
+.gitignore
+.venv
+venv
+__pycache__
+*.pyc
+*.egg-info
+
+# Secrets never enter the image. Configuration arrives as environment
+# variables at run time -- pydantic-settings reads those in preference to any
+# .env file, so the deployed container needs no file at all.
+.env
+.env.*
+!.env.example
+
+# Local state. Baking a stale CocoIndex ledger or extraction cache into the
+# image would make the container believe work was already done.
+data/
+*.db
+*.db-shm
+*.db-wal
+
+tests/
+docs/
+eval/results/
+.superpowers/
+.claude/
+llm.txt
+*.md
+!README.md

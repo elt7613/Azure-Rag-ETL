@@ -1,0 +1,13 @@
+{
+  "policy": "Expense Limits",
+  "department": "finance",
+  "meta": {
+    "version": "2.3",
+    "owner": "Controller"
+  },
+  "limits": [
+    {"category": "Meals", "daily_cap": 75, "currency": "USD"},
+    {"category": "Lodging", "daily_cap": 250, "currency": "USD"},
+    {"category": "Ground", "daily_cap": 60, "currency": "USD"}
+  ]
+}

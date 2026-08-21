@@ -1,0 +1,1717 @@
+{
+  "cases": 51,
+  "retrieval": {
+    "hit_rate@3": 1.0,
+    "hit_rate@5": 1.0,
+    "hit_rate@10": 1.0,
+    "recall@5": 1.0,
+    "mrr": 0.9412,
+    "ndcg@5": 0.9566
+  },
+  "generation": {
+    "answer_correctness": 0.8873,
+    "fact_match": 0.9804,
+    "groundedness": 0.9961,
+    "citation_accuracy": 0.9459,
+    "hallucination_rate": 0.0392
+  },
+  "behaviour": {
+    "correctly_answered": 37,
+    "correctly_abstained": 7,
+    "correctly_clarified": 0,
+    "wrongly_answered": 6,
+    "wrongly_abstained": 1,
+    "wrongly_clarified": 0,
+    "behaviour_accuracy": 0.8627
+  },
+  "system": {
+    "latency_p50_ms": 3753.0,
+    "latency_p95_ms": 17388.8,
+    "latency_mean_ms": 5465.8,
+    "prompt_tokens": 116474,
+    "completion_tokens": 12176,
+    "estimated_cost_usd": 0.066071,
+    "cost_per_query_usd": 0.001296
+  },
+  "mode": "baseline",
+  "graph_retrieval": false,
+  "usage": {
+    "requests": 145,
+    "input_tokens": 116474,
+    "output_tokens": 12176,
+    "cached_input_tokens": 1024,
+    "cost_usd": 0.065764,
+    "by_step": {
+      "answer": {
+        "requests": 51,
+        "input_tokens": 56258,
+        "output_tokens": 3657
+      },
+      "judge": {
+        "requests": 51,
+        "input_tokens": 20239,
+        "output_tokens": 3187
+      },
+      "verify": {
+        "requests": 43,
+        "input_tokens": 39977,
+        "output_tokens": 5332
+      }
+    }
+  },
+  "by_category": {
+    "ambiguous": {
+      "cases": 6,
+      "behaviour_correct": 1,
+      "mean_judge_score": 2.667,
+      "fact_match": 1.0,
+      "hit_rate@5": 1.0,
+      "mean_latency_ms": 3984.2
+    },
+    "follow_up": {
+      "cases": 5,
+      "behaviour_correct": 5,
+      "mean_judge_score": 3.4,
+      "fact_match": 0.8,
+      "hit_rate@5": 1.0,
+      "mean_latency_ms": 3420.1
+    },
+    "multi_document": {
+      "cases": 10,
+      "behaviour_correct": 10,
+      "mean_judge_score": 3.7,
+      "fact_match": 1.0,
+      "hit_rate@5": 1.0,
+      "mean_latency_ms": 3988.4
+    },
+    "no_answer": {
+      "cases": 8,
+      "behaviour_correct": 6,
+      "mean_judge_score": 3.5,
+      "fact_match": 1.0,
+      "hit_rate@5": 1.0,
+      "mean_latency_ms": 3297.8
+    },
+    "straightforward": {
+      "cases": 16,
+      "behaviour_correct": 16,
+      "mean_judge_score": 3.688,
+      "fact_match": 1.0,
+      "hit_rate@5": 1.0,
+      "mean_latency_ms": 9313.7
+    },
+    "versioned": {
+      "cases": 6,
+      "behaviour_correct": 6,
+      "mean_judge_score": 4.0,
+      "fact_match": 1.0,
+      "hit_rate@5": 1.0,
+      "mean_latency_ms": 3744.5
+    }
+  },
+  "cases_detail": [
+    {
+      "case_id": "s01",
+      "category": "straightforward",
+      "mode": "baseline",
+      "question": "How many days of paid sick leave do employees get per year?",
+      "answer": "Employees receive 10 days of paid sick leave per calendar year, credited in full on January 1 or the employee's start date for new hires [1].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 3,
+      "judge_reason": "The candidate answer correctly states that employees receive 10 days of paid sick leave per year and that it is credited in full on January 1, but adds 'or the employee's start date for new hires,' which is not in the reference and may be incorrect or extraneous, making the candidate answer incomplete compared to the reference.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "HR/LeavePolicy.pdf"
+      ],
+      "expected_docs": [
+        "HR/LeavePolicy.pdf"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 15271.225987991784,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "s02",
+      "category": "straightforward",
+      "mode": "baseline",
+      "question": "What is the maximum 401(k) match the company provides?",
+      "answer": "The Company provides a maximum 401(k) match of 5%, consisting of 100% match on employee contributions up to 4% of eligible compensation, plus 50% match on the next 2% of contributions [1].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer matches the reference by stating the maximum 401(k) match is 5%, with 100% match up to 4% of eligible compensation and 50% match on the next 2%, fully consistent with the reference.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "HR/Benefits.pdf",
+        "HR/LeavePolicy.pdf"
+      ],
+      "expected_docs": [
+        "HR/Benefits.pdf"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 23196.303689997876,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "s03",
+      "category": "straightforward",
+      "mode": "baseline",
+      "question": "What is the annual limit for tuition reimbursement?",
+      "answer": "The annual limit for tuition reimbursement is $5,250 per calendar year, provided the course is job-related, pre-approved, and a grade of B or higher (or Pass, for pass/fail courses) is achieved.",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer matches the reference answer's facts exactly, stating the $5,250 annual limit, pre-approval, job-related coursework, and a grade of B or higher. The extra detail about Pass grades for pass/fail courses is additional but correct and does not detract from agreement.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "HR/Benefits.pdf",
+        "HR/LeavePolicy.pdf"
+      ],
+      "expected_docs": [
+        "HR/Benefits.pdf"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 3931.7483070044545,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "s04",
+      "category": "straightforward",
+      "mode": "baseline",
+      "question": "How much PTO does an employee with 4 years of service accrue annually?",
+      "answer": "An employee with 4 years of service accrues 20 days of PTO annually according to the accrual schedule for 3 to 5 years of service [2].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer correctly states the PTO accrual of 20 days annually for an employee with 4 years of service, matching the reference's specified range and amount. Although the candidate lacks details on carryover and accrual cap, these are extra details not required for factual agreement and the main fact is accurately conveyed.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "HR/LeavePolicy.pdf",
+        "HR/Benefits.pdf"
+      ],
+      "expected_docs": [
+        "HR/LeavePolicy.pdf"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 6301.773212995613,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "s05",
+      "category": "straightforward",
+      "mode": "baseline",
+      "question": "What is the minimum password length?",
+      "answer": "The minimum password length is 12 characters [1].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer states the same factual information as the reference: the minimum password length is 12 characters. The presence of a citation does not affect factual accuracy.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "IT/PasswordPolicy.docx"
+      ],
+      "expected_docs": [
+        "IT/PasswordPolicy.docx"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 3251.9162820099154,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "s06",
+      "category": "straightforward",
+      "mode": "baseline",
+      "question": "After how many failed login attempts is an account locked, and for how long?",
+      "answer": "An account is locked after 5 consecutive failed login attempts within a 15-minute window and remains locked for 30 minutes or until unlocked by the IT Service Desk after identity verification [1].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer matches the reference exactly: account lock occurs after 5 consecutive failed attempts within a 15-minute window, and the lock duration is 30 minutes or until IT Service Desk unlocks after identity verification.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "IT/PasswordPolicy.docx"
+      ],
+      "expected_docs": [
+        "IT/PasswordPolicy.docx"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 4727.461824004422,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "s07",
+      "category": "straightforward",
+      "mode": "baseline",
+      "question": "Do privileged administrator accounts have to rotate their passwords?",
+      "answer": "Privileged / administrative accounts must rotate credentials every 90 days regardless of multi-factor authentication (MFA) status [1].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 3,
+      "judge_reason": "The candidate answer correctly states that privileged/administrative accounts must rotate credentials every 90 days, matching the reference. However, it misses the detail that standard MFA-protected accounts rotate only on evidence of compromise, so it is incomplete.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "IT/PasswordPolicy.docx"
+      ],
+      "expected_docs": [
+        "IT/PasswordPolicy.docx"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 3109.5219049893785,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "s08",
+      "category": "straightforward",
+      "mode": "baseline",
+      "question": "What receipt is required for expenses, and above what amount?",
+      "answer": "An itemized receipt is required for any single expense of $25 or more. Credit card statements alone are not sufficient documentation. For meals, the receipt must show the itemized order (not just the total), along with the business purpose and names of attendees [1].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer states the same facts as the reference about the requirement of an itemized receipt for expenses of $25 or more and that credit card statements alone are insufficient, adding extra correct detail about meal receipts which is acceptable.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "finance/ExpensePolicy.pdf"
+      ],
+      "expected_docs": [
+        "finance/ExpensePolicy.pdf"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 3357.898360991385,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "s09",
+      "category": "straightforward",
+      "mode": "baseline",
+      "question": "How long do I have to submit an expense report?",
+      "answer": "You have 30 calendar days to submit an expense report after trip completion [1].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 2,
+      "judge_reason": "The candidate answer states the 30-day period but mentions submission after trip completion instead of purchase date. It also omits the details about the 60-day deadline, written justification, and VP approval, making it partly correct but materially incomplete.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "finance/TravelPolicy.docx",
+        "finance/ExpensePolicy.pdf"
+      ],
+      "expected_docs": [
+        "finance/ExpensePolicy.pdf"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 0.5,
+      "ndcg_5": 0.6309297535714575,
+      "citation_accuracy": 0.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 15479.551495009218,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "s10",
+      "category": "straightforward",
+      "mode": "baseline",
+      "question": "What is the nightly hotel rate cap for San Francisco?",
+      "answer": "The nightly hotel rate cap for San Francisco is $350 [1].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer states the same factual information as the reference answer: the nightly hotel rate cap for San Francisco is $350, and San Francisco is a Tier 1 city as implied by the rate cap amount.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "finance/TravelPolicy.docx"
+      ],
+      "expected_docs": [
+        "finance/TravelPolicy.docx"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 17388.78873399517,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "s11",
+      "category": "straightforward",
+      "mode": "baseline",
+      "question": "What is the domestic per-diem rate for dinner?",
+      "answer": "The domestic per-diem rate for dinner is $45 [1].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer correctly states the domestic per-diem rate for dinner as $45, which is exactly the same fact as the reference answer.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "finance/TravelPolicy.docx"
+      ],
+      "expected_docs": [
+        "finance/TravelPolicy.docx"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 4753.606679994846,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "s12",
+      "category": "straightforward",
+      "mode": "baseline",
+      "question": "How long does the mutual NDA remain in effect?",
+      "answer": "The mutual NDA remains in effect for two (2) years from the Effective Date [1].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 3,
+      "judge_reason": "The candidate correctly states the NDA duration as two years from the Effective Date but omits the details about the confidentiality obligations surviving for three years or indefinitely for trade secrets.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "legal/NDA.docx"
+      ],
+      "expected_docs": [
+        "legal/NDA.docx"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 3598.069473999203,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "s13",
+      "category": "straightforward",
+      "mode": "baseline",
+      "question": "What are the payment terms in the vendor service agreement?",
+      "answer": "The payment terms in the vendor service agreement are that the Client shall pay all undisputed invoiced amounts within thirty (30) days of receipt (\"Net 30\"). Amounts not paid when due accrue interest at 1.0% per month or the maximum rate permitted by law, whichever is lower. Vendor shall provide reasonably detailed invoices referencing the applicable Statement of Work (SOW) [1].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer fully matches the reference answer in substance: Net 30 payment terms, undisputed invoiced amounts due within 30 days, and late interest at 1.0% per month or the maximum permitted by law, with extra correct detail about invoices and referencing SOW.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "legal/VendorContract.pdf"
+      ],
+      "expected_docs": [
+        "legal/VendorContract.pdf"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 4633.635996011435,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "s14",
+      "category": "straightforward",
+      "mode": "baseline",
+      "question": "What insurance must a vendor carry?",
+      "answer": "A vendor must carry commercial general liability insurance of at least $1,000,000 per occurrence and professional liability (errors & omissions) insurance of at least $1,000,000 per claim [1].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer states the same facts as the reference, specifying the required types and amounts of insurance coverages correctly.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "legal/VendorContract.pdf"
+      ],
+      "expected_docs": [
+        "legal/VendorContract.pdf"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 4135.462995996932,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "s15",
+      "category": "straightforward",
+      "mode": "baseline",
+      "question": "What volume discount applies to a 150-seat contract?",
+      "answer": "The volume discount for a 150-seat contract falls in the 100\u2013249 seats tier, which has a discount of 0.15 or 15%. The discounted price per seat per month at this tier is $55.25 [2].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer correctly identifies the 15% discount for the 100-249 seat tier and the discounted price of $55.25 per seat per month, fully matching the reference facts.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "sales/Discounts.xlsx"
+      ],
+      "expected_docs": [
+        "sales/Discounts.xlsx"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 30674.927165993722,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "s16",
+      "category": "straightforward",
+      "mode": "baseline",
+      "question": "Which VPN client does the company use and is MFA required to connect?",
+      "answer": "The company uses the NorthLink VPN client for connecting to the VPN [1]. Multi-Factor Authentication (MFA) is required for every connection, and it is performed via the Okta Verify app using a push notification approval [1].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer accurately states the VPN client as NorthLink VPN and correctly specifies that MFA via Okta Verify push is required for every connection, matching the reference answer completely.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "IT/VPNGuide.pdf",
+        "IT/PasswordPolicy.docx"
+      ],
+      "expected_docs": [
+        "IT/VPNGuide.pdf"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 5206.712768995203,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "m01",
+      "category": "multi_document",
+      "mode": "baseline",
+      "question": "I am booking a 7-hour international flight as an individual contributor and expect a $3,000 total trip cost. What cabin class am I allowed and who has to approve the expense?",
+      "answer": "For a 7-hour international flight as an individual contributor, you are allowed to book Premium Economy class according to the travel policy table for international flights over 6 hours at your level [1]. The expense approval is generally based on expense categories and limits. Since the total trip cost of $3,000 likely includes multiple expense types and exceeds standard category limits, specific approval requirements may depend on those categories. However, no single direct approval threshold for total trip cost is stated in the provided passages. Individual expense items over limits may require approval by Manager, Director, or Department VP depending on the category, but no blanket approver for the entire trip cost is indicated [4].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 2,
+      "judge_reason": "The candidate correctly states Premium Economy is allowed for a 7-hour international flight as an individual contributor, matching the reference. However, the candidate does not specify the Department VP approval required for $3,000 expenses, instead offering a vague and uncertain statement about approvals based on categories without confirming the specific approval level noted in the reference.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "finance/TravelPolicy.docx",
+        "finance/ExpensePolicy.pdf"
+      ],
+      "expected_docs": [
+        "finance/TravelPolicy.docx",
+        "finance/ExpensePolicy.pdf"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": 1.0,
+      "groundedness": 0.8,
+      "contradicted_claims": 0,
+      "latency_ms": 4739.388037007302,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "m02",
+      "category": "multi_document",
+      "mode": "baseline",
+      "question": "Compare the Starter and Enterprise subscription tiers on price, minimum seats and API access.",
+      "answer": "For the 2026 subscription pricing effective January 1, 2026, the Starter tier costs $32 per seat per month with a minimum of 5 seats and includes limited API access (1k calls/month). The Enterprise tier costs $109 per seat per month with a minimum of 25 seats and offers unlimited API access [2][4].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer correctly states the price, minimum seats, and API access for both the Starter and Enterprise tiers, matching the reference answer's facts exactly.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "sales/Pricing2025.pdf",
+        "sales/Pricing2026.pdf"
+      ],
+      "expected_docs": [
+        "sales/Pricing2026.pdf"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 0.5,
+      "ndcg_5": 0.6309297535714575,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 3811.451626010239,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "m03",
+      "category": "multi_document",
+      "mode": "baseline",
+      "question": "What is the total discount for a 150-seat annual prepaid contract, and what is the cap?",
+      "answer": "The total discount for a 150-seat annual prepaid contract is 30% (15% volume discount + 15% term discount), with the combined discount capped at 40% total without a CFO exception [1].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer correctly states the total discount as 30%, specifying the 15% volume discount and 15% term discount, and correctly mentions the combined cap of 40%. The addition of the CFO exception detail does not contradict the reference.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "sales/Discounts.xlsx",
+        "sales/Pricing2026.pdf",
+        "sales/Pricing2025.pdf"
+      ],
+      "expected_docs": [
+        "sales/Discounts.xlsx"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 3651.3729239959503,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "m04",
+      "category": "multi_document",
+      "mode": "baseline",
+      "question": "After a business trip, where do I submit expenses and by when, and what receipts do I need?",
+      "answer": "After a business trip, you must submit all trip expenses through the ExpensePath system within 30 calendar days of trip completion [1]. Receipts are required for any expense of $25 or more and must be itemized to qualify for reimbursement [1]. Furthermore, expenses must be submitted within 30 calendar days of the purchase date according to the Expense Policy [2].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 3,
+      "judge_reason": "The candidate correctly states submission through ExpensePath within 30 calendar days and itemized receipts for expenses of $25 or more as per the reference. However, it adds another potentially conflicting 30-day timeline 'from purchase date,' which is not in the reference and may cause confusion. Thus, the candidate is correct but incomplete and partly inconsistent, scoring 3.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "finance/TravelPolicy.docx",
+        "finance/ExpensePolicy.pdf"
+      ],
+      "expected_docs": [
+        "finance/TravelPolicy.docx",
+        "finance/ExpensePolicy.pdf"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 4120.943682006327,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "m05",
+      "category": "multi_document",
+      "mode": "baseline",
+      "question": "Compare the Bronze and Gold medical plan tiers on employee cost, employer contribution and deductible.",
+      "answer": "The Bronze medical plan tier has an employee monthly cost of $45, an employer contribution of 70%, and an individual deductible of $2,500. The Gold medical plan tier has an employee monthly cost of $160, an employer contribution of 90%, and an individual deductible of $500 [1].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer matches the reference exactly on employee cost, employer contribution, and deductible for both Bronze and Gold tiers, with no errors or omissions.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "HR/Benefits.pdf"
+      ],
+      "expected_docs": [
+        "HR/Benefits.pdf"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 3673.316136992071,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "m06",
+      "category": "multi_document",
+      "mode": "baseline",
+      "question": "How much notice must I give for a two-week PTO request, and what happens if I have already used all my paid leave?",
+      "answer": "For a two-week PTO request, you must give 15 business days' notice and obtain written manager approval [5]. If you have already used all your paid leave, unpaid leave may be granted at the Company's discretion, but it requires VP-level approval [2].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer accurately states the 15 business days' notice and manager approval requirement for a two-week PTO request, and also correctly mentions that unpaid leave may be granted with VP-level approval if paid leave is exhausted, matching the reference facts fully.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "HR/LeavePolicy.pdf"
+      ],
+      "expected_docs": [
+        "HR/LeavePolicy.pdf"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 4099.352636010735,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "m07",
+      "category": "multi_document",
+      "mode": "baseline",
+      "question": "Which MFA factor is required for IT administrator accounts, and how often must those accounts rotate credentials?",
+      "answer": "For IT Administrator accounts, a hardware security key (FIDO2 / YubiKey) is required as the MFA factor. These privileged/administrative accounts must rotate credentials every 90 days regardless of MFA status [2][1].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer correctly states that IT Administrator accounts require a hardware security key (FIDO2 / YubiKey) as the MFA factor and that privileged accounts must rotate credentials every 90 days, matching the reference answer exactly.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "IT/PasswordPolicy.docx"
+      ],
+      "expected_docs": [
+        "IT/PasswordPolicy.docx"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 3813.25725800707,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "m08",
+      "category": "multi_document",
+      "mode": "baseline",
+      "question": "What are the vendor contract's liability cap and its exceptions?",
+      "answer": "The vendor contract's liability cap is that neither party's aggregate liability under the agreement shall exceed the fees paid or payable under the applicable Statement of Work (SOW) in the twelve (12) months preceding the claim. Exceptions to this cap include breaches of confidentiality, indemnification obligations, and gross negligence or willful misconduct. Additionally, neither party shall be liable for indirect, incidental, or consequential damages [2].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer accurately states the liability cap of aggregate fees paid or payable under the SOW in the 12 months preceding the claim, and correctly lists the exceptions: breaches of confidentiality, indemnification obligations, and gross negligence or willful misconduct. It also correctly mentions that neither party is liable for indirect or consequential damages. The slight addition of 'incidental' damages is acceptable as extra correct detail.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "legal/VendorContract.pdf"
+      ],
+      "expected_docs": [
+        "legal/VendorContract.pdf"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 4434.0659029985545,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "m09",
+      "category": "multi_document",
+      "mode": "baseline",
+      "question": "What is the difference between the NDA's confidentiality survival period and the vendor agreement's?",
+      "answer": "The NDA's confidentiality obligations survive for three (3) years following disclosure of the relevant Confidential Information, or indefinitely for information that qualifies as a trade secret under applicable law [5]. In contrast, the vendor agreement's confidentiality obligation survives termination of the agreement for a period of five (5) years, or indefinitely for trade secrets [2].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer matches the reference in stating the NDA's confidentiality period as three years after disclosure and the vendor agreement's as five years after termination, with both being indefinite for trade secrets.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "legal/NDA.docx",
+        "legal/VendorContract.pdf"
+      ],
+      "expected_docs": [
+        "legal/NDA.docx",
+        "legal/VendorContract.pdf"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 3728.772429996752,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "m10",
+      "category": "multi_document",
+      "mode": "baseline",
+      "question": "What wellness and learning stipends can an employee claim in a year?",
+      "answer": "An employee can claim up to $600 per year toward gym memberships, fitness equipment, or wellness apps through the WellNorth reimbursement portal [1]. Additionally, employees receive an annual learning stipend of $1,000 for conferences, books, or online courses [2].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer correctly states the same facts as the reference: $600 annual wellness stipend through WellNorth for gym, fitness equipment, or wellness apps, and $1,000 annual learning stipend for conferences, books, or online courses.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "HR/Benefits.pdf",
+        "HR/LeavePolicy.pdf"
+      ],
+      "expected_docs": [
+        "HR/Benefits.pdf"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 3812.139311005012,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "v01",
+      "category": "versioned",
+      "mode": "baseline",
+      "question": "What is the current list price per seat for the Enterprise tier?",
+      "answer": "The current list price per seat for the Enterprise tier is $109 per seat per month, as stated in the 2026 pricing document effective January 1, 2026 [3].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer correctly states the same list price per seat ($109) for the Enterprise tier as the reference and correctly notes the effective date as January 1, 2026, matching the reference answer exactly.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "sales/Pricing2025.pdf",
+        "sales/Pricing2026.pdf",
+        "sales/Discounts.xlsx"
+      ],
+      "expected_docs": [
+        "sales/Pricing2026.pdf"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 0.5,
+      "ndcg_5": 0.6309297535714575,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 3526.569367997581,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "v02",
+      "category": "versioned",
+      "mode": "baseline",
+      "question": "How many API calls per month does the Professional tier include?",
+      "answer": "The Professional tier includes 100,000 API calls per month according to the 2026 pricing document effective from 2026-01-01 [2]. This is an increase from the 50,000 calls per month limit listed in the 2025 pricing document which is now superseded [1].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer correctly states that the Professional tier includes 100,000 API calls per month as per the 2026 pricing document, and also mentions the increase from 50,000 calls in 2025, matching the reference answer facts fully.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "sales/Pricing2025.pdf",
+        "sales/Pricing2026.pdf"
+      ],
+      "expected_docs": [
+        "sales/Pricing2026.pdf"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 0.5,
+      "ndcg_5": 0.6309297535714575,
+      "citation_accuracy": 0.5,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 3753.0213050049497,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "v03",
+      "category": "versioned",
+      "mode": "baseline",
+      "question": "A customer signed in 2025 and is asking what they pay for Professional. What rate applies to them?",
+      "answer": "A customer who signed in 2025 pays the 2025 rate for the Professional tier, which is $59 per seat per month, with a minimum of 10 seats and Email + chat support with next-business-day SLA [2]. The 2026 pricing document states that customers on active 2025 contracts keep their contracted rate through their current renewal date [4].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate correctly states the rate of $59 per seat per month for 2025 customers, mentions the contract retention of the rate through the current renewal date, and adds some valid extra details, matching the reference facts accurately.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "sales/Pricing2026.pdf",
+        "sales/Pricing2025.pdf"
+      ],
+      "expected_docs": [
+        "sales/Pricing2025.pdf",
+        "sales/Pricing2026.pdf"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 4158.482482002,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "v04",
+      "category": "versioned",
+      "mode": "baseline",
+      "question": "Is the Starter tier price still $29?",
+      "answer": "No, the Starter tier price is not still $29. It was $29 in the 2025 pricing but increased to $32 starting from 2026-01-01 according to the new pricing document for 2026 [2].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer correctly states that the Starter tier price is no longer $29, that it was $29 in 2025, and that it increased to $32 in 2026, matching the reference's facts precisely.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "sales/Pricing2025.pdf",
+        "sales/Pricing2026.pdf"
+      ],
+      "expected_docs": [
+        "sales/Pricing2026.pdf"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 0.5,
+      "ndcg_5": 0.6309297535714575,
+      "citation_accuracy": 0.5,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 3781.4178519911366,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "v05",
+      "category": "versioned",
+      "mode": "baseline",
+      "question": "Which document supersedes the 2025 rate card?",
+      "answer": "The 2026 Rate Card document titled sales/Pricing2026.pdf supersedes the 2025 rate card. It is effective January 1, 2026 and replaces the 2025 rate card for contracts signed on or after that date [1][3].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer correctly identifies the 2026 Rate Card (Pricing2026.pdf) as the document superseding the 2025 rate card, along with the effective date January 1, 2026, matching the reference answer's facts.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "sales/Pricing2026.pdf",
+        "sales/Pricing2025.pdf"
+      ],
+      "expected_docs": [
+        "sales/Pricing2026.pdf",
+        "sales/Pricing2025.pdf"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 3706.3598209933843,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "v06",
+      "category": "versioned",
+      "mode": "baseline",
+      "question": "Are audit logs available on the Enterprise tier?",
+      "answer": "Yes, audit logs and data residency controls are included on the Enterprise tier as of the 2026 pricing version[1][2].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer correctly states that audit logs and data residency controls are included on the Enterprise tier from 2026, matching the reference's information exactly.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "sales/Pricing2026.pdf",
+        "sales/Pricing2025.pdf"
+      ],
+      "expected_docs": [
+        "sales/Pricing2026.pdf"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 3541.2871060107136,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "a01",
+      "category": "ambiguous",
+      "mode": "baseline",
+      "question": "What is the limit?",
+      "answer": "The limits are as follows for different expense categories: Client meals $100 per person, Team meals / offsites $75 per person, Ground transportation actual cost with no limit, Software / SaaS subscriptions $500 per year, Office supplies $150 per month, Professional development $1,000 per year, Client gifts $75 per recipient [1].",
+      "expected_behaviour": "clarify",
+      "observed_behaviour": "answer",
+      "behaviour_correct": false,
+      "judge_score": 1,
+      "judge_reason": "The reference indicates that the question is ambiguous and suggests clarifying which limit is meant, whereas the candidate directly answers with specific expense category limits, ignoring the need for clarification and thus not fully agreeing with the reference stance.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "finance/ExpensePolicy.pdf",
+        "legal/NDA.docx",
+        "legal/VendorContract.pdf"
+      ],
+      "expected_docs": [],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": null,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 4367.570225003874,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "a02",
+      "category": "ambiguous",
+      "mode": "baseline",
+      "question": "What's the discount?",
+      "answer": "The discount depends on the type and terms of the deal as follows: Volume discounts are automatic based on total seats; term discounts vary by billing term (e.g., 0% for monthly, 15% for annual prepaid, 22% for 2-year prepaid, 28% for 3-year prepaid) [1][3]. Special program discounts (e.g., 20% for Non-Profit, 25% for Education, 30% for Startup Year 1) apply individually and do not stack with volume or term discounts; only the highest discount among these applies [4][5]. Combined discounts of volume plus term can stack but are capped at 40%, requiring CFO approval if exceeded [1][2]. For example, a contract with 150 seats, annual prepaid billing, gets 15% volume and 15% term discounts combined to 30% total, resulting in a final $45.5/seat/month price [1].",
+      "expected_behaviour": "clarify",
+      "observed_behaviour": "answer",
+      "behaviour_correct": false,
+      "judge_score": 1,
+      "judge_reason": "The candidate answer lists various specific discount types and percentages not mentioned in the reference, which only indicates the need to clarify which discount is meant (volume, 15% annual prepaid term, or 15% employee stock purchase plan). The candidate's detailed figures and additional discount types contradict the simpler classification in the reference, leading to a low factual agreement score.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "sales/Discounts.xlsx"
+      ],
+      "expected_docs": [],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": null,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 5610.363904008409,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "a03",
+      "category": "ambiguous",
+      "mode": "baseline",
+      "question": "How much notice do I need to give?",
+      "answer": "You need to give at least 5 business days' notice for PTO requests of 3 days or fewer through the WorkdayHR portal. For requests of more than 3 consecutive days, you need to give 15 business days' notice and obtain written manager approval [2].",
+      "expected_behaviour": "clarify",
+      "observed_behaviour": "answer",
+      "behaviour_correct": false,
+      "judge_score": 3,
+      "judge_reason": "The candidate correctly states the PTO notice requirements of 5 or 15 business days, matching the reference for PTO. However, the candidate omits other types of notice mentioned in the reference such as subscription cancellation (30 days), contract non-renewal (60 days), and cure of material breach (30 days), making the answer incomplete.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "legal/VendorContract.pdf",
+        "HR/LeavePolicy.pdf",
+        "legal/NDA.docx"
+      ],
+      "expected_docs": [],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": null,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 4000.553758989554,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "a04",
+      "category": "ambiguous",
+      "mode": "baseline",
+      "question": "Which tier am I on?",
+      "answer": "The passages do not contain any information about which tier you are on.",
+      "expected_behaviour": "clarify",
+      "observed_behaviour": "abstain",
+      "behaviour_correct": false,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer correctly states that the passages do not contain information about individual enrolment or which tier the user is on, accurately reflecting the reference answer's point that it cannot know an individual's enrolment.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "sales/Pricing2025.pdf",
+        "sales/Pricing2026.pdf",
+        "finance/TravelPolicy.docx"
+      ],
+      "expected_docs": [],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": null,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 3555.6912629981525,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "a05",
+      "category": "ambiguous",
+      "mode": "baseline",
+      "question": "What's the deadline?",
+      "answer": "The deadline to submit all expenses is within 30 calendar days of the purchase date or trip completion. Expense reports submitted after 60 days require written justification and VP approval and may be denied at the Company's discretion [1][5].",
+      "expected_behaviour": "clarify",
+      "observed_behaviour": "answer",
+      "behaviour_correct": false,
+      "judge_score": 3,
+      "judge_reason": "The candidate answer correctly provides details about expense submission deadlines (30 days for submission, 60 days for late submission with approval), aligning with some parts of the reference. However, it does not mention other deadlines listed in the reference such as travel booking, open enrollment, or qualifying life event reporting, making it incomplete.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "finance/ExpensePolicy.pdf",
+        "HR/LeavePolicy.pdf",
+        "legal/VendorContract.pdf",
+        "legal/NDA.docx",
+        "finance/TravelPolicy.docx"
+      ],
+      "expected_docs": [],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": null,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 2770.6581850070506,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "a06",
+      "category": "ambiguous",
+      "mode": "baseline",
+      "question": "What is the tuition reimbursement limit?",
+      "answer": "The tuition reimbursement limit is up to $5,250 per calendar year for job-related coursework and certifications, provided a grade of B or higher (or Pass for pass/fail courses) is achieved and the course is pre-approved by the employee's manager and People Operations [1].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer states the same tuition reimbursement limit as the reference answer ($5,250 per calendar year) and provides additional correct details, which is allowed.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "HR/Benefits.pdf",
+        "finance/ExpensePolicy.pdf",
+        "finance/TravelPolicy.docx"
+      ],
+      "expected_docs": [
+        "HR/Benefits.pdf"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 3600.492822995875,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "n01",
+      "category": "no_answer",
+      "mode": "baseline",
+      "question": "What is the refund policy for Enterprise customers?",
+      "answer": "For Enterprise tier customers, monthly billing is available, and the standard contract term is 12 months with auto-renewal, cancellable with 30 days' written notice prior to renewal [3]. The document does not specify a separate refund policy for Enterprise customers.",
+      "expected_behaviour": "abstain",
+      "observed_behaviour": "answer",
+      "behaviour_correct": false,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer correctly states that the document does not specify a refund policy for Enterprise customers, aligning with the reference answer that the corpus does not contain refund policy information. It also adds correct details without contradicting the reference.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "finance/ExpensePolicy.pdf",
+        "sales/Pricing2026.pdf",
+        "finance/TravelPolicy.docx"
+      ],
+      "expected_docs": [],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": null,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 3674.005587003194,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "n02",
+      "category": "no_answer",
+      "mode": "baseline",
+      "question": "What is the company's severance pay policy?",
+      "answer": "The provided passages do not contain any information about the company's severance pay policy.",
+      "expected_behaviour": "abstain",
+      "observed_behaviour": "abstain",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate correctly states that the provided information does not contain any details about the severance pay policy, matching the reference answer that this information is not in the knowledge base.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "HR/LeavePolicy.pdf",
+        "finance/ExpensePolicy.pdf",
+        "finance/TravelPolicy.docx"
+      ],
+      "expected_docs": [],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": null,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 3538.452968990896,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "n03",
+      "category": "no_answer",
+      "mode": "baseline",
+      "question": "Who is the CEO of Northwind Traders?",
+      "answer": "The provided passages do not contain information about the CEO of Northwind Traders.",
+      "expected_behaviour": "abstain",
+      "observed_behaviour": "abstain",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "Both the candidate and the reference correctly indicate that the documents do not contain information about the CEO of Northwind Traders, thus showing perfect factual agreement.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "legal/NDA.docx",
+        "legal/VendorContract.pdf"
+      ],
+      "expected_docs": [],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": null,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 2558.001642988529,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "n04",
+      "category": "no_answer",
+      "mode": "baseline",
+      "question": "What is the parental leave entitlement for employees based in Germany?",
+      "answer": "Eligible employees with 90 or more days of continuous service in Germany receive 12 weeks of paid parental leave following the birth, adoption, or foster placement of a child. This leave may be taken continuously or intermittently within 12 months of the qualifying event, with manager approval required for intermittent scheduling [1].",
+      "expected_behaviour": "abstain",
+      "observed_behaviour": "answer",
+      "behaviour_correct": false,
+      "judge_score": 0,
+      "judge_reason": "The reference answer states that parental leave policy information for Germany is not in the knowledge base and only US-based employee policies and country-specific addenda (not present) are covered. The candidate provides specific details about parental leave in Germany, which contradicts the reference stating the information is not available.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "HR/LeavePolicy.pdf"
+      ],
+      "expected_docs": [],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": null,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 3172.0113289920846,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "n05",
+      "category": "no_answer",
+      "mode": "baseline",
+      "question": "What service credits do customers receive if the uptime SLA is breached?",
+      "answer": "The provided passages do not contain any information about service credits customers receive if the uptime SLA is breached.",
+      "expected_behaviour": "abstain",
+      "observed_behaviour": "abstain",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer accurately states that the passages do not contain any information about service credits, matching the reference answer which says no service-credit remedy is stated.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "sales/Pricing2026.pdf",
+        "sales/Pricing2025.pdf"
+      ],
+      "expected_docs": [],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": null,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 4333.1440839974675,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "n06",
+      "category": "no_answer",
+      "mode": "baseline",
+      "question": "Are contractors eligible for the medical plan?",
+      "answer": "The passages do not specify whether contractors are eligible for the medical plan. They only mention employees and the medical plan tiers available to them.",
+      "expected_behaviour": "abstain",
+      "observed_behaviour": "abstain",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer correctly states that eligibility of contractors for the medical plan is not specified, matching the reference that contractors are not addressed and only employees scheduled 30+ hours per week are mentioned.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "HR/Benefits.pdf"
+      ],
+      "expected_docs": [],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": null,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 3216.7409989924636,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "n07",
+      "category": "no_answer",
+      "mode": "baseline",
+      "question": "What is the dental plan deductible?",
+      "answer": "The passages do not provide information about the dental plan deductible.",
+      "expected_behaviour": "abstain",
+      "observed_behaviour": "abstain",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate correctly states that the passages do not provide information about the dental plan deductible, matching the reference answer that no dental deductible is given.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "HR/Benefits.pdf",
+        "HR/LeavePolicy.pdf"
+      ],
+      "expected_docs": [],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": null,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 2570.9433809970506,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "n08",
+      "category": "no_answer",
+      "mode": "baseline",
+      "question": "How is sales commission calculated?",
+      "answer": "The passages provided do not contain any information on how sales commission is calculated.",
+      "expected_behaviour": "abstain",
+      "observed_behaviour": "abstain",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer correctly states that the provided passages do not contain any information on how sales commission is calculated, which aligns with the reference answer.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "sales/Discounts.xlsx",
+        "sales/Pricing2026.pdf",
+        "sales/Pricing2025.pdf"
+      ],
+      "expected_docs": [],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": null,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 3318.9379400137113,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "f01",
+      "category": "follow_up",
+      "mode": "baseline",
+      "question": "What about Starter?",
+      "answer": "The Starter tier is $32 per seat per month with a minimum of 5 seats and comes with Email support and a 2-business-day SLA according to the 2026 rate card [2].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer states the same price of $32 per seat per month as the reference and provides additional correct details about the minimum seats and support, which is acceptable and does not contradict the reference.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "sales/Pricing2025.pdf",
+        "sales/Pricing2026.pdf"
+      ],
+      "expected_docs": [
+        "sales/Pricing2026.pdf"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 0.5,
+      "ndcg_5": 0.6309297535714575,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 3186.5006939915475,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "f02",
+      "category": "follow_up",
+      "mode": "baseline",
+      "question": "And after ten years?",
+      "answer": "After 10 years of service, an employee accrues 25 days of PTO per year, according to the band for 11+ years of service [1].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer correctly states that after 10 years of service, PTO accrual is 25 days per year, matching the reference's information for 11+ years of service. The candidate's answer aligns with the reference's facts.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "HR/LeavePolicy.pdf",
+        "HR/Benefits.pdf"
+      ],
+      "expected_docs": [
+        "HR/LeavePolicy.pdf"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 3645.3503130032914,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "f03",
+      "category": "follow_up",
+      "mode": "baseline",
+      "question": "Is there an exception to that?",
+      "answer": "There is no exception; MFA is required for all Company accounts without exception, using Okta Verify as the primary method [1].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 1,
+      "judge_reason": "The candidate answer states no exception to MFA requirement, whereas the reference specifies an exception with written approval from the CISO and annual review. This constitutes a mostly wrong factual mismatch.",
+      "fact_match": false,
+      "retrieved_docs": [
+        "IT/PasswordPolicy.docx",
+        "IT/VPNGuide.pdf"
+      ],
+      "expected_docs": [
+        "IT/PasswordPolicy.docx"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 3276.2154200027,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "f04",
+      "category": "follow_up",
+      "mode": "baseline",
+      "question": "What about Tier 3 cities?",
+      "answer": "The nightly hotel cap for Tier 3 cities is $180 per night, which applies to all other cities not listed as Tier 1 or Tier 2 [1].",
+      "expected_behaviour": "answer",
+      "observed_behaviour": "answer",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer states the same facts as the reference: a $180 per night cap for Tier 3 cities, covering all cities not in Tier 1 or Tier 2.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "finance/TravelPolicy.docx"
+      ],
+      "expected_docs": [
+        "finance/TravelPolicy.docx"
+      ],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": 1.0,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 3702.7031059988076,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    },
+    {
+      "case_id": "f05",
+      "category": "follow_up",
+      "mode": "baseline",
+      "question": "And what is the refund if they cancel early?",
+      "answer": "The passages do not mention any refund policy for early cancellation of the subscription.",
+      "expected_behaviour": "abstain",
+      "observed_behaviour": "abstain",
+      "behaviour_correct": true,
+      "judge_score": 4,
+      "judge_reason": "The candidate answer correctly states that the documents do not mention any refund policy for early cancellation, which matches the reference's assertion that the documents include notice periods but no refund terms.",
+      "fact_match": true,
+      "retrieved_docs": [
+        "sales/Pricing2026.pdf",
+        "legal/VendorContract.pdf",
+        "sales/Pricing2025.pdf"
+      ],
+      "expected_docs": [],
+      "hit_rate_5": 1.0,
+      "recall_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_5": 1.0,
+      "citation_accuracy": null,
+      "groundedness": 1.0,
+      "contradicted_claims": 0,
+      "latency_ms": 3289.700476991129,
+      "diagnostics": {
+        "mode": "baseline",
+        "candidates": 5
+      }
+    }
+  ]
+}

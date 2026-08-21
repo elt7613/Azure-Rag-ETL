@@ -1,0 +1,1 @@
+"""FastAPI retrieval service."""

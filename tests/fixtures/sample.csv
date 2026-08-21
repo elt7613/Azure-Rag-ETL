@@ -1,0 +1,9 @@
+Sales Operations | Effective: 2026-01-01 | Version 4.2,,
+Tier,List Price,Discount
+Starter,$32,5%
+Professional,$65,10%
+Enterprise,$120,18%
+
+Region,Quota
+EMEA,1200000
+AMER,1800000
