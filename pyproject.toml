@@ -46,3 +46,9 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+# Non-Python files inside packages are not installed by default. The chat page
+# is served from the installed package (routes.py resolves it via __file__),
+# so without this the container's GET / 500s on a missing index.html.
+[tool.setuptools.package-data]
+"rag.api" = ["static/*"]
