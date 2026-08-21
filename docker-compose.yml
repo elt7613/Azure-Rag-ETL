@@ -8,8 +8,10 @@
 
 services:
   api:
-    build: .
-    image: azure-rag-etl:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    image: azure-rag-api:latest
     restart: unless-stopped
     env_file:
       - .env          # On Dokploy, delete this and use the environment panel.
@@ -19,15 +21,17 @@ services:
       - rag-data:/app/data
 
   etl:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.etl
     image: azure-rag-etl:latest
     restart: unless-stopped
     env_file:
       - .env
-    # Catch up on anything missed while down, then watch. With DOC_SOURCE=blob
+    # The CMD baked into Dockerfile.etl is the watcher itself:
+    # catch up on anything missed while down, then watch. With DOC_SOURCE=blob
     # the watcher polls ETags, so an unchanged corpus costs one cheap list call
     # per interval and nothing else.
-    command: ["cocoindex", "--app-dir", ".", "update", "rag.etl.app", "--live"]
     volumes:
       - rag-data:/app/data
     # Only this service writes data/. The API shares the volume read-mostly, so

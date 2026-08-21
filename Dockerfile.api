@@ -1,14 +1,14 @@
-# One image, two processes.
+# API server image.
 #
 # The API server and the ETL watcher are the same code with different entry
-# points, so they are the same image with different commands (see
-# docker-compose.yml). Building them separately would let the retrieval side
-# and the ingestion side drift onto different versions of the parsing and
-# chunking code, which is exactly the bug that produces answers citing chunks
-# that no longer exist.
+# points, built as two images (Dockerfile.api and Dockerfile.etl) from one
+# context so every layer is cache-shared. Building them separately from
+# different code would let the retrieval side and the ingestion side drift
+# onto different versions of the parsing and chunking code, which is exactly
+# the bug that produces answers citing chunks that no longer exist.
 #
-#   API:  uvicorn rag.api.main:app            (the default CMD)
-#   ETL:  cocoindex --app-dir . update rag.etl.app --live
+#   API:  uvicorn rag.api.main:app            (this image)
+#   ETL:  cocoindex --app-dir . update rag.etl.app --live   (Dockerfile.etl)
 
 FROM python:3.13-slim
 

@@ -223,11 +223,13 @@ header granted, never widen it.
 
 ## Deploying with Docker
 
-Two long-running processes, one image: the API server and the ETL watcher. They
-are the same code, so they ship as the same image with different commands — if
-they were built separately, the retrieval side and the ingestion side could
-drift onto different versions of the parsing and chunking code, and answers
-would start citing chunks that no longer exist.
+Two long-running processes, two services: the API server (`Dockerfile.api`) and
+the ETL watcher (`Dockerfile.etl`). They are the same code built from one
+context with different entry points, so every build layer is cache-shared and
+the second image costs nothing after the first. They must never be built from
+different code, though — if the retrieval side and the ingestion side drift
+onto different versions of the parsing and chunking code, answers would start
+citing chunks that no longer exist.
 
 ```bash
 cp .env.example .env        # fill in the REQUIRED values
@@ -321,7 +323,8 @@ eval/              golden set, metrics, runner
 source_data/       eleven fictional policy documents across five departments
 scripts/           env generation, index setup
 tests/             unit, live-integration and end-to-end
-Dockerfile         one image; the API and the ETL watcher differ only by command
+Dockerfile.api     API server image (uvicorn)
+Dockerfile.etl     ETL watcher image (cocoindex update --live)
 docker-compose.yml both services plus the data volume
 ```
 

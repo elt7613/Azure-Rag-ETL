@@ -1,0 +1,49 @@
+# ETL watcher image: same code as the API, different entry point.
+#
+# Kept as its own Dockerfile (rather than a command override on the API
+# image) so the two services have independent healthchecks and clearly
+# declared responsibilities. The build context and layers are identical to
+# Dockerfile.api, so after the first build every layer is cache-shared and
+# this image costs nothing extra.
+#
+#   ETL:  cocoindex --app-dir . update rag.etl.app --live
+#
+# "update --live" first catches up on anything missed while the watcher was
+# down, then watches the source and re-indexes on change. This is the
+# ingestion watcher -- not the CocoIndex monitoring UI (`cocoindex server`),
+# which this image deliberately does not run.
+
+FROM python:3.13-slim
+
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
+
+WORKDIR /app
+
+# Dependencies resolve from pyproject alone, so this layer survives every
+# change to src/ and the rebuild stays in the seconds.
+COPY pyproject.toml README.md LICENSE ./
+COPY src ./src
+RUN pip install --no-cache-dir .
+
+# The shipped corpus, so DOC_SOURCE=local works in the container without a
+# mount. A real deployment sets DOC_SOURCE=blob and never reads this.
+COPY source_data ./source_data
+
+# Everything the pipeline persists locally lives under data/: CocoIndex's
+# incremental state, the extraction cache and the document registry. It is a
+# volume because losing it does not lose your documents, but it does mean the
+# next run re-extracts and re-embeds everything -- billable work, and slow.
+RUN useradd --create-home --uid 10001 app \
+    && mkdir -p /app/data \
+    && chown -R app:app /app
+USER app
+VOLUME ["/app/data"]
+
+# No EXPOSE and no HTTP healthcheck: this process serves nothing. Docker's
+# own restart policy (unless-stopped, see docker-compose.yml) is the liveness
+# story here -- if the watcher dies, the container exits and gets restarted.
+
+CMD ["cocoindex", "--app-dir", ".", "update", "rag.etl.app", "--live"]
